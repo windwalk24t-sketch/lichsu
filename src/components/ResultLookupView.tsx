@@ -55,7 +55,7 @@ export const ResultLookupView: React.FC<ResultLookupViewProps> = ({
           Tra Cứu Kết Quả Bài Thi Lịch Sử
         </h1>
         <p className="text-xs sm:text-sm text-stone-500 max-w-md mx-auto mb-6">
-          Nhập Họ và tên học sinh hoặc Số báo danh (SBD) để xem điểm số chi tiết và nhận xét của giáo viên.
+          Nhập Họ và tên học sinh hoặc Biệt danh để xem điểm số chi tiết và nhận xét của giáo viên.
         </p>
 
         <div className="max-w-lg mx-auto relative">
@@ -66,7 +66,7 @@ export const ResultLookupView: React.FC<ResultLookupViewProps> = ({
               setSearchTerm(e.target.value);
               setSelectedSubmission(null);
             }}
-            placeholder="Ví dụ: Nguyễn Minh Anh, hoặc HS60101..."
+            placeholder="Ví dụ: Nguyễn Minh Anh, hoặc cute student..."
             className="w-full pl-4 pr-10 py-3 text-sm rounded-xl border border-stone-300 focus:outline-none focus:ring-2 focus:ring-amber-500 shadow-xs"
           />
           <Search className="w-5 h-5 text-stone-400 absolute right-3.5 top-1/2 -translate-y-1/2" />
@@ -155,7 +155,7 @@ export const ResultLookupView: React.FC<ResultLookupViewProps> = ({
                 <span>·</span>
                 <span>Trường: <strong className="text-stone-800">{selectedSubmission.student.schoolName}</strong></span>
                 <span>·</span>
-                <span>SBD: <strong className="text-stone-800 font-mono">{selectedSubmission.student.studentId}</strong></span>
+                <span>Biệt danh: <strong className="text-amber-800 font-semibold">{selectedSubmission.student.studentId || 'cute student'}</strong></span>
               </div>
             </div>
 

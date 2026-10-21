@@ -37,17 +37,25 @@ export const StudentExamView: React.FC<StudentExamViewProps> = ({
   onSubmit,
   isSubmitting
 }) => {
-  // Student Info state
+  // Student Info state with default nickname 'cute student'
   const [student, setStudent] = useState<StudentInfo>(() => {
     const saved = localStorage.getItem('last_student_info');
     if (saved) {
-      try { return JSON.parse(saved); } catch {}
+      try {
+        const parsed = JSON.parse(saved);
+        return {
+          fullName: parsed.fullName || '',
+          className: parsed.className || '',
+          schoolName: parsed.schoolName || '',
+          studentId: parsed.studentId?.trim() ? parsed.studentId : 'cute student'
+        };
+      } catch {}
     }
     return {
       fullName: '',
       className: '',
       schoolName: '',
-      studentId: ''
+      studentId: 'cute student'
     };
   });
 
@@ -194,7 +202,7 @@ export const StudentExamView: React.FC<StudentExamViewProps> = ({
         fullName: student.fullName.trim() || 'Học sinh ẩn danh',
         className: student.className.trim() || 'Tự do',
         schoolName: student.schoolName.trim() || 'THCS & THPT',
-        studentId: (student.studentId || '').trim() || `HS${Math.floor(1000 + Math.random() * 9000)}`
+        studentId: (student.studentId || '').trim() || 'cute student'
       },
       answers,
       grading: {
@@ -272,8 +280,8 @@ export const StudentExamView: React.FC<StudentExamViewProps> = ({
               </strong>
             </div>
             <div>
-              <span className="text-stone-500">Mã bài thi / SBD:</span>{' '}
-              <strong className="font-mono text-stone-900">{submittedResult.student.studentId}</strong>
+              <span className="text-stone-500">Biệt danh:</span>{' '}
+              <strong className="text-amber-800 font-semibold">{submittedResult.student.studentId || 'cute student'}</strong>
             </div>
             <div>
               <span className="text-stone-500">Thời gian làm bài:</span>{' '}
@@ -453,11 +461,11 @@ export const StudentExamView: React.FC<StudentExamViewProps> = ({
 
             <div>
               <label className="block text-xs font-medium text-stone-700 mb-1">
-                Số báo danh / Mã học sinh
+                Biệt danh (Nickname)
               </label>
               <input
                 type="text"
-                placeholder="Ví dụ: HS0123"
+                placeholder="cute student"
                 value={student.studentId}
                 onChange={e => setStudent(prev => ({ ...prev, studentId: e.target.value }))}
                 className="w-full px-3.5 py-2 rounded-lg border border-stone-300 focus:outline-none focus:ring-2 focus:ring-amber-500 text-sm"

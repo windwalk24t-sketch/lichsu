@@ -162,6 +162,8 @@ export const GradingModal: React.FC<GradingModalProps> = ({
                 <span>Trường: <strong className="text-stone-200">{submission.student.schoolName}</strong></span>
                 <span>·</span>
                 <span>Mã đề: <strong className="text-amber-400 font-mono">{submission.examCode}</strong></span>
+                <span>·</span>
+                <span>Biệt danh: <strong className="text-amber-300 font-medium">{submission.student.studentId || 'cute student'}</strong></span>
               </div>
             </div>
           </div>

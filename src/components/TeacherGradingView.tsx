@@ -169,7 +169,7 @@ export const TeacherGradingView: React.FC<TeacherGradingViewProps> = ({
             type="text"
             value={searchQuery}
             onChange={e => setSearchQuery(e.target.value)}
-            placeholder="Tìm theo tên học sinh, lớp hoặc mã SBD..."
+            placeholder="Tìm theo tên học sinh, lớp hoặc biệt danh..."
             className="w-full pl-9 pr-4 py-2 text-xs sm:text-sm rounded-lg border border-stone-300 focus:outline-none focus:ring-2 focus:ring-amber-500"
           />
         </div>
@@ -218,7 +218,7 @@ export const TeacherGradingView: React.FC<TeacherGradingViewProps> = ({
             <GraduationCap className="w-12 h-12 text-stone-300 mx-auto mb-3" />
             <h3 className="text-base font-bold text-stone-700">Chưa có bài nộp nào phù hợp</h3>
             <p className="text-xs text-stone-400 mt-1 max-w-sm mx-auto">
-              Không tìm thấy bài làm của học sinh theo bộ lọc hiện tại. Thử đổi bộ lọc hoặc bấm "Dữ liệu mẫu" để nạp bài thi mẫu.
+              Không tìm thấy bài làm của học sinh theo bộ lọc hiện tại.
             </p>
           </div>
         ) : (
@@ -226,7 +226,7 @@ export const TeacherGradingView: React.FC<TeacherGradingViewProps> = ({
             <table className="w-full text-left text-xs sm:text-sm">
               <thead className="bg-stone-50 border-b border-stone-200 text-stone-500 uppercase tracking-wider text-[11px] font-semibold">
                 <tr>
-                  <th className="py-3.5 px-4">Học sinh / SBD</th>
+                  <th className="py-3.5 px-4">Học sinh / Biệt danh</th>
                   <th className="py-3.5 px-4">Lớp &amp; Trường</th>
                   <th className="py-3.5 px-4">Đề thi</th>
                   <th className="py-3.5 px-4 text-center">Trắc nghiệm</th>
@@ -253,8 +253,11 @@ export const TeacherGradingView: React.FC<TeacherGradingViewProps> = ({
                     <tr key={sub.id} className="hover:bg-amber-50/30 transition-colors">
                       <td className="py-3.5 px-4">
                         <div className="font-bold text-stone-900">{sub.student.fullName}</div>
-                        <div className="text-xs text-stone-400 font-mono mt-0.5">
-                          {sub.student.studentId || 'Chưa có SBD'} · {dateStr}
+                        <div className="text-xs text-stone-500 mt-0.5">
+                          <span className="text-stone-400">Biệt danh:</span>{' '}
+                          <strong className="text-amber-800 font-semibold">{sub.student.studentId || 'cute student'}</strong>
+                          <span className="text-stone-300 mx-1.5">·</span>
+                          <span className="text-stone-400 font-mono">{dateStr}</span>
                         </div>
                       </td>
 

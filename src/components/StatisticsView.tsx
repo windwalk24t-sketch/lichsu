@@ -94,10 +94,11 @@ export const StatisticsView: React.FC<StatisticsViewProps> = ({
 
   // Export to CSV
   const handleExportCSV = () => {
-    const header = ['STT', 'Họ và tên', 'Lớp', 'Trường', 'Mã đề', 'Khối', 'Điểm TN', 'Điểm TL', 'Tổng điểm', 'Trạng thái', 'Nhận xét của GV'];
+    const header = ['STT', 'Họ và tên', 'Biệt danh', 'Lớp', 'Trường', 'Mã đề', 'Khối', 'Điểm TN', 'Điểm TL', 'Tổng điểm', 'Trạng thái', 'Nhận xét của GV'];
     const rows = filteredSubmissions.map((s, idx) => [
       idx + 1,
       `"${s.student.fullName}"`,
+      `"${s.student.studentId || 'cute student'}"`,
       `"${s.student.className}"`,
       `"${s.student.schoolName}"`,
       s.examCode,
