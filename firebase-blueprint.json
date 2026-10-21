@@ -1,0 +1,58 @@
+{
+  "entities": {
+    "Submission": {
+      "title": "Submission",
+      "description": "Student exam submission with answers and grading results",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique submission ID"
+        },
+        "examId": {
+          "type": "string",
+          "description": "Identifier of the exam"
+        },
+        "examTitle": {
+          "type": "string",
+          "description": "Title of the exam"
+        },
+        "examCode": {
+          "type": "string",
+          "description": "Exam code like LS6-01 or LS10-101"
+        },
+        "grade": {
+          "type": "string",
+          "description": "Grade level 6 or 10"
+        },
+        "student": {
+          "type": "object",
+          "description": "Student information including fullName, className, schoolName, studentId"
+        },
+        "answers": {
+          "type": "object",
+          "description": "Student answers for single choice, true-false, and essay"
+        },
+        "grading": {
+          "type": "object",
+          "description": "Grading results including auto score, essay score, total score, and comments"
+        },
+        "submittedAt": {
+          "type": "string",
+          "description": "ISO timestamp of submission"
+        },
+        "timeSpentSeconds": {
+          "type": "number",
+          "description": "Duration spent on the exam in seconds"
+        }
+      },
+      "required": ["id", "examId", "grade", "student", "answers", "grading", "submittedAt"]
+    }
+  },
+  "firestore": {
+    "/submissions/{submissionId}": {
+      "schema": "Submission",
+      "description": "Collection of all student exam submissions across devices"
+    }
+  }
+}

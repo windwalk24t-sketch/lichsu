@@ -1,0 +1,32 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Default deny catch-all
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Submissions collection: allows multi-device student submissions and teacher grading
+    match /submissions/{submissionId} {
+      // Allow read for student lookup and teacher grading across devices
+      allow read: if true;
+
+      // Allow create for student test submission
+      allow create: if request.resource.data.id is string
+                    && request.resource.data.examId is string
+                    && request.resource.data.grade is string
+                    && request.resource.data.student is map
+                    && request.resource.data.answers is map
+                    && request.resource.data.grading is map;
+
+      // Allow update for teacher grading and detailed feedback
+      allow update: if request.resource.data.id is string
+                    && request.resource.data.grading is map;
+
+      // Allow delete
+      allow delete: if true;
+    }
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "name": "Hệ thống Ôn thi & Chấm thi Môn Lịch sử",
+  "description": "Nền tảng ôn thi trắc nghiệm và tự luận môn Lịch sử (Lớp 6 và Lớp 10), hỗ trợ học sinh nộp bài và giáo viên chấm thi đa thiết bị cùng thống kê điểm số tự động.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
